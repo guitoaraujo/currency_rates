@@ -1,7 +1,13 @@
 
 
 
-<h1>dawdawd</h1>
+<h1>Currency Rates</h1>
+<%= form_tag currencies_index_path, method: :get do %>
+
+  <%= text_field_tag :date, '', id: 'datepicker', :class => 'form-control', placeholder: 'Choose a date' %>
+  <button class="btn btn-default" type="submit">search</button>
+
+<% end %>
 
 
 
@@ -24,5 +30,9 @@
 // console.log(b)
 //
 //     var c = {"USDEUR"=>0.89329, "USDBRL"=>3.969697, "USDARS"=>44.691008}
+
+
+
+
 
 </script>

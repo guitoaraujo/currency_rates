@@ -13,4 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require flatpickr
 //= require_tree .
+
+document.addEventListener('DOMContentLoaded', function() {
+    flatpickr('#datepicker');
+})
