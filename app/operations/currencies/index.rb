@@ -9,9 +9,9 @@ class Currencies::Index
   end
 
   def initialize(date)
-    @date = date.blank? ? Date.today : date
-    @key = '4681edf90fa1de308c0571241e4682e3'
-    @url = 'http://apilayer.net/api/historical'
+    @date       = date.blank? ? Date.today : date
+    @key        = '4681edf90fa1de308c0571241e4682e3'
+    @url        = 'http://apilayer.net/api/historical'
     @currencies = 'EUR, BRL, ARS'
   end
 

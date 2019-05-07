@@ -1,5 +1,3 @@
-
-
 <div class="row justify-content-center">
   <div class="col-4 text-center">
     <h3>Currency Rates</h3>
@@ -13,7 +11,7 @@
         <%= text_field_tag :date, '', id: 'datepicker', :class => 'form-control', placeholder: 'Choose a date' %>
       </div>
       <div class="form-group">
-        <%= submit_tag "Search", class:"btn btn-sm btn-success", name: "submit" %>
+        <%= submit_tag "Search", class:"btn btn-sm btn-primary", name: "submit" %>
       </div>
     <% end %>
   </div>
@@ -21,38 +19,26 @@
 
 <div class="row justify-content-center">
   <div class="col-10 text-center">
-
+    <div id="container" style="width:100%; height:400px;"></div>
   </div>
 </div>
 
-
-
-<h5>USD -> EUR: <%= @rates['USDEUR'] %></h5>
-
-
-
-
-
 <script>
-
-//   var a = {
-//       "2019-04-30":{"USDBRL":3.918397, "USDEUR":0.891596, "USDARS":44.354023},
-//       "2019-05-01":{"USDBRL":3.920797, "USDEUR":0.892825, "USDARS":44.387503},
-//       "2019-05-02":{"USDBRL":3.967699, "USDEUR":0.895005, "USDARS":44.767497},
-//       "2019-05-03":{"USDBRL":3.939041, "USDEUR":0.89194, "USDARS":44.446041},
-//       "2019-05-04":{"USDBRL":3.939041, "USDEUR":0.89194, "USDARS":44.446041},
-//       "2019-05-05":{"USDBRL":3.938099, "USDEUR":0.894025, "USDARS":44.54797},
-//       "2019-05-06":{"USDBRL":3.960303, "USDEUR":0.892803, "USDARS":44.671021}
-//   }
-//
-//   var b = "{\"2019-04-30\":{\"USDEUR\":0.891596,\"USDBRL\":3.918397,\"USDARS\":44.354023},\"2019-05-01\":{\"USDEUR\":0.892825,\"USDBRL\":3.920797,\"USDARS\":44.387503},\"2019-05-02\":{\"USDEUR\":0.895005,\"USDBRL\":3.967699,\"USDARS\":44.767497},\"2019-05-03\":{\"USDEUR\":0.89194,\"USDBRL\":3.939041,\"USDARS\":44.446041},\"2019-05-04\":{\"USDEUR\":0.89194,\"USDBRL\":3.939041,\"USDARS\":44.446041},\"2019-05-05\":{\"USDEUR\":0.894025,\"USDBRL\":3.938099,\"USDARS\":44.54797},\"2019-05-06\":{\"USDEUR\":0.89306,\"USDBRL\":3.970201,\"USDARS\":44.671043}}"
-//
-// console.log(b)
-//
-//     var c = {"USDEUR"=>0.89329, "USDBRL"=>3.969697, "USDARS"=>44.691008}
-
-
-
-
-
+  var myChart = Highcharts.chart('container', {
+    title: {
+      text: 'Currency Rates'
+    },
+    xAxis: {
+      categories: ['EUR', 'BRL', 'ARS']
+    },
+    yAxis: {
+      title: {
+          text: 'USD Rate'
+      }
+    },
+    series: [{
+      name: '<%= @date %>',
+      data: [<%= @rates['USDEUR'] %>, <%= @rates['USDBRL'] %>, <%= @rates['USDARS'] %>]
+    }]
+  });
 </script>
