@@ -1,5 +1,7 @@
 {
   "name": "currency_rates",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "yarn": "^1.15.2"
+  }
 }
