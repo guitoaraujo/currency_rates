@@ -1,6 +1,27 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-5">
   <div class="col-4 text-center">
     <h3>Currency Rates</h3>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-4 text-center">
+    <%= form_tag currencies_index_path, :method => :get do %>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-6">
+          <label>Base Currency </label>
+          <%= select_tag :base, options_for_select(currencies, @filters[:base]), class: 'form-control' %>
+        </div>
+
+        <div class="form-group col-6">
+          <label>Target Currency </label>
+          <%= select_tag :target, options_for_select(currencies, @filters[:target]), class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -11,19 +32,21 @@
 </div>
 
 <script>
-  var series = <%= raw( @series.to_json) %>
+  var data = <%= raw( @series.flatten.to_json) %>
+  var categories = <%= raw( @categories.flatten.sort.to_json) %>
+  var name = <%= raw( @filters[:target].to_json) %>
   var myChart = Highcharts.chart('container', {
     title: {
-      text: 'Currency Rates working days'
+      text: 'Last Working Week'
     },
     xAxis: {
-      categories: ['MXN','USD','EUR']
+      categories: categories
     },
     yAxis: {
       title: {
-          text: 'BRL Rate'
+          text: '<%= "#{@filters[:base]} Rate" %>'
       }
     },
-    series: series
+    series: [{name: name, data: data}]
   });
 </script>
